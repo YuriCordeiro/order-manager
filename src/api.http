@@ -1,0 +1,12 @@
+### Get All Customers
+GET http://localhost:3000/customer
+
+### Create Customer
+POST http://localhost:3000/customer
+Content-Type: application/json
+
+{
+    "email": "yuricordeiro@validprovider.com",
+    "cpf": "18199900000",
+    "name": "Yuri Cordeiro"
+}
