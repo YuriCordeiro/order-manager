@@ -26,6 +26,27 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## 1. Topic for Teachers
+<details>
+  <summary>Click here</summary>
+
+## Running the dockerized application
+```bash
+# runs application container and mongoose database container
+$ docker-compose up -d
+
+# depending on your docker compose version, you should run instead
+$ docker compose up -d
+```
+
+Now the application should be accessible by http://localhost:3000
+</details>
+
+
+## 2. Topic for Developers
+<details>
+  <summary>Click here</summary>
+
 ## Installation
 
 ```bash
@@ -45,6 +66,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+Now the application should be accessible by http://localhost:3000
+
 ## Test
 
 ```bash
@@ -57,6 +80,7 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+</details>
 
 ## Support
 
