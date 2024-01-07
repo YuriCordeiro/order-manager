@@ -1,16 +1,9 @@
-import { Body, Controller, Get, Param, Post, Put, Delete, HttpStatus, HttpCode, Logger, Query, NotFoundException } from '@nestjs/common';
-import { Customer } from 'src/core/entities/customer.entity';
+import { Body, Controller, Get, Param, Post, Put, Delete, HttpStatus, HttpCode } from '@nestjs/common';
 import { CustomerDTO } from 'src/dto/customer.dto';
-import { CustomerUseCases } from 'src/use-cases/customer.use-case';
+import { Customer } from 'src/core/entities/customer.entity';
 
 @Controller('customer')
 export class CustomerController {
-
-    private readonly logger = new Logger(CustomerController.name);
-
-    constructor(private customerUseCases: CustomerUseCases) {
-
-    }
 
     /**
      * 
@@ -18,8 +11,7 @@ export class CustomerController {
      */
     @Get()
     async getAllCustomers(): Promise<Customer[]> {
-        this.logger.log(`getAllCustomers() - Start`);
-        return this.customerUseCases.getAllCustomers();
+        return []
     }
 
     /**
@@ -29,8 +21,7 @@ export class CustomerController {
      */
     @Post()
     async createCustomer(@Body() customer: CustomerDTO): Promise<Customer> {
-        this.logger.log(`createCustomer(CustomerDTO) - Start`);
-        return this.customerUseCases.createCustomer(customer);
+        return
     }
 
     /**
@@ -38,10 +29,9 @@ export class CustomerController {
      * @param customerId Id of the customer
      * @returns The registered Customer
      */
-    @Get('/id/:customerId')
+    @Get('/:customerId')
     async getCustomerById(@Param('customerId') customerId: string): Promise<Customer> {
-        this.logger.log(`getCustomerById(string) - Start`);
-        return this.customerUseCases.getCustomerById(customerId);
+        return
     }
 
     /**
@@ -49,10 +39,9 @@ export class CustomerController {
      * @param customerCPF the string that represents the number of "Cadastro de Pessoa Física" of the customer
      * @returns The registered customer
      */
-    @Get('/cpf/:customerCPF')
-    async getCustomerByCPF(@Param('customerCPF') customerCPF: string) {
-        this.logger.log(`getCustomerByCPF(string) - Start`);
-        return this.customerUseCases.getCustomerByCPF(customerCPF);
+    @Get('/:customerCPF')
+    async getCustomerByCPF(@Param('customerCPF') customerCPF: string): Promise<Customer> {
+        return
     }
 
     /**
@@ -64,8 +53,7 @@ export class CustomerController {
     @Put('/:customerId')
     async updateCustomer(@Param('customerId') customerId: string,
         @Body() customer: CustomerDTO): Promise<Customer> {
-        this.logger.log(`updateCustomer(string, CustomerDTO) - Start`);
-        return this.customerUseCases.updateCustomer(customerId, customer);
+        return
     }
 
     /**
@@ -76,7 +64,6 @@ export class CustomerController {
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete('/:customerId')
     async deleteCustomer(@Param('customerId') customerId: string): Promise<void> {
-        this.logger.log(`deleteCustomer(string) - Start`);
-        this.customerUseCases.delete(customerId);
+        return
     }
 }

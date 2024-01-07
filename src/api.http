@@ -1,0 +1,29 @@
+### Get All Customers
+GET http://localhost:3000/customer
+
+### Get Customer By ID
+GET http://localhost:3000/customer/id/6599a36f44c9160da5bebee5
+
+### Get Customer by CPF
+GET http://localhost:3000/customer/cpf/19167806999
+
+### Create Customer
+POST http://localhost:3000/customer
+Content-Type: application/json
+
+{
+    "email": "yuri_obraia@validprovider.com",
+    "cpf": "19167806999",
+    "name": "Yuri OBraia"
+}
+
+### Update Customer (VALIDATE => Returning Old Object)
+PUT http://localhost:3000/customer/6599b524ada144492387e0f0
+Content-Type: application/json
+
+{
+    "email": "jean_canetaazul@anothervalidprovider.com"
+}
+
+### Delete Customer
+DELETE http://localhost:3000/customer/6599b589ada144492387e0f6
