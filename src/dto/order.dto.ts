@@ -19,7 +19,7 @@ export class OrderDTO {
 
   @IsNotEmpty()
   @IsString()
-  readonly status: string[];
+  readonly status: string;
 
   @IsNotEmpty()
   @IsNumber()

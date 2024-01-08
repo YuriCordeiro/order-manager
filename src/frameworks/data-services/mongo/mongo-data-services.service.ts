@@ -32,7 +32,7 @@ export class MongoDataServices
   onApplicationBootstrap() {
     //this.customers = new MongoGenericRepository<Customer>(this.CustomerRepository);
     this.customers = new CustomerRepositoryImpl(this.CustomerRepository);
-    // this.products = new ProductRepositoryImpl(this.ProductRepository);
-    // this.orders = new OrderRepositoryImpl(this.OrderRepository);
+    this.products = new ProductRepositoryImpl(this.ProductRepository);
+    this.orders = new OrderRepositoryImpl(this.OrderRepository);
   }
 }
