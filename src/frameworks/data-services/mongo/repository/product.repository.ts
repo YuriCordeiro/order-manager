@@ -1,5 +1,6 @@
-import { Product } from 'src/core/entities/product.entity';
+import { Product } from '../model/product.model';
 import { MongoGenericRepository } from '../mongo-generic-repository';
+
 
 export class ProductRepositoryImpl extends MongoGenericRepository<Product> {
   // getProductById(id: string) {
@@ -12,3 +13,4 @@ export class ProductRepositoryImpl extends MongoGenericRepository<Product> {
   //   );
   // }
 }
+ 

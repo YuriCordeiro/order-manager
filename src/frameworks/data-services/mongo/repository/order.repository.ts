@@ -1,11 +1,13 @@
-import { Order } from 'src/core/entities/order.entity';
+
+import { Order } from '../model/order.model';
 import { MongoGenericRepository } from '../mongo-generic-repository';
 
+
+//TODO: Remove and use IGenericRepository
 export class OrderRepositoryImpl extends MongoGenericRepository<Order> {
   getOrderByStatus(status: string) {
     return (
       this._repository
-        //.find((user) => user.cpf == customerCPF)
         .find({ status: status })
         .populate(this._populateOnFind)
         .exec()

@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
 import { CustomerFactoryService } from "./customer-factory.service";
-import { Customer } from "src/core/entities/customer.entity";
 import { CustomerDTO } from "src/dto/customer.dto";
+import { Customer } from "src/frameworks/data-services/mongo/model/customer.model";
 
 @Injectable()
 export class CustomerUseCases {

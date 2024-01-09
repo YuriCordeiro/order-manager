@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { OrderFactoryService } from './order-factory.service';
-import { Order } from 'src/core/entities/order.entity';
 import { OrderDTO } from 'src/dto/order.dto';
+import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 
 @Injectable()
 export class OrderUseCases {

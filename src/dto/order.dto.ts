@@ -5,8 +5,8 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Customer } from 'src/core/entities/customer.entity';
-import { Product } from 'src/core/entities/product.entity';
+import { Customer } from 'src/frameworks/data-services/mongo/model/customer.model';
+import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
 
 export class OrderDTO {
   @IsNotEmpty()

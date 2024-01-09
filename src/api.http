@@ -2,23 +2,23 @@
 GET http://localhost:3000/customer
 
 ### Get Customer By ID
-GET http://localhost:3000/customer/id/6599a36f44c9160da5bebee5
+GET http://localhost:3000/customer/id/659c85f6a875970be57aa7c5
 
 ### Get Customer by CPF
-GET http://localhost:3000/customer/cpf/19167806999
+GET http://localhost:3000/customer/cpf/1234
 
 ### Create Customer
 POST http://localhost:3000/customer
 Content-Type: application/json
 
 {
-    "email": "yuri_obraia@validprovider.com",
-    "cpf": "19167806999",
-    "name": "Yuri OBraia"
+    "email": "Jean_CanetaAzul@non_validprovider.com",
+    "cpf": "35690685600",
+    "name": "Jean Caneta Azul"
 }
 
-### Update Customer (VALIDATE => Returning Old Object)
-PUT http://localhost:3000/customer/6599b524ada144492387e0f0
+### Update Customer
+PUT http://localhost:3000/customer/659c85f6a875970be57aa7c5
 Content-Type: application/json
 
 {
@@ -26,4 +26,24 @@ Content-Type: application/json
 }
 
 ### Delete Customer
-DELETE http://localhost:3000/customer/6599b589ada144492387e0f6
+DELETE http://localhost:3000/customer/659c85f6a875970be57aa7c5
+
+### Get All Orders
+GET http://localhost:3000/orders
+
+### Get All Products
+GET http://localhost:3000/products
+
+### Create Product
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{     
+    "name": "BigMac",     
+    "value": 22.5,
+    "quantity": 15,
+    "description": "Um saboroso hamburguer BEM bacana" 
+}
+
+### Delete Product
+DELETE http://localhost:3000/products/659c8f42f13ebe00d6809135

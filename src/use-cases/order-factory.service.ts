@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from 'src/core/entities/order.entity';
 import { OrderDTO } from 'src/dto/order.dto';
+import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 
 @Injectable()
 export class OrderFactoryService {

@@ -11,14 +11,14 @@ import {
   Put,
 } from '@nestjs/common';
 import { OrderDTO } from 'src/dto/order.dto';
+import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 import { OrderUseCases } from 'src/use-cases/order.use-case';
-import { Order } from 'src/core/entities/order.entity';
 
 @Controller('/orders')
 export class OrderController {
   private readonly logger = new Logger(OrderController.name);
 
-  constructor(private orderUseCases: OrderUseCases) {}
+  constructor(private orderUseCases: OrderUseCases) { }
 
   @Post()
   async createOrder(@Body() orderDTO: OrderDTO): Promise<Order> {

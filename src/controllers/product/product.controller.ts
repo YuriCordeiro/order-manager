@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ProductUseCases } from 'src/use-cases/product.use-case';
 import { ProductDTO } from 'src/dto/product.dto';
-import { Product } from 'src/core/entities/product.entity';
+import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
 
 @Controller('/products')
 export class ProductController {

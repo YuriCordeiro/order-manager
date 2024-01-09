@@ -25,4 +25,4 @@ import { Order, OrderSchema } from './model/order.model';
   ],
   exports: [IDataServices],
 })
-export class MongoDataServicesModule {}
+export class MongoDataServicesModule { }
