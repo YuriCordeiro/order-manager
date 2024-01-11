@@ -35,6 +35,10 @@ export class ProductUseCases {
     }
   }
 
+  getProductByCategory(category: string): Promise<Product[]> {
+    return this.dataServices.products.getProductByCategory(category);
+  }
+
   createProduct(productDTO: ProductDTO): Promise<Product> {
     const newProduct = this.productFactoryService.createNewProduct(productDTO);
     return this.dataServices.products.create(newProduct);

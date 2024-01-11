@@ -9,12 +9,14 @@ import { CustomerRepositoryImpl } from './repository/customer.repository';
 import { OrderRepositoryImpl } from './repository/order.repository';
 import { Product, ProductDocument } from './model/product.model';
 import { Order, OrderDocument } from './model/order.model';
+import { ProductRepositoryImpl } from './repository/product.repository';
 
 @Injectable()
 export class MongoDataServices
-  implements IDataServices, OnApplicationBootstrap {
+  implements IDataServices, OnApplicationBootstrap
+{
   customers: CustomerRepositoryImpl;
-  products: IGenericRepository<Product>;
+  products: ProductRepositoryImpl;
   orders: OrderRepositoryImpl;
 
   constructor(
@@ -23,12 +25,12 @@ export class MongoDataServices
     @InjectModel(Product.name)
     private ProductRepository: Model<ProductDocument>,
     @InjectModel(Order.name)
-    private OrderRepository: Model<OrderDocument>
-  ) { }
+    private OrderRepository: Model<OrderDocument>,
+  ) {}
 
   onApplicationBootstrap() {
     this.customers = new CustomerRepositoryImpl(this.CustomerRepository);
-    this.products = new MongoGenericRepository(this.ProductRepository);
+    this.products = new ProductRepositoryImpl(this.ProductRepository);
     this.orders = new OrderRepositoryImpl(this.OrderRepository);
   }
 }

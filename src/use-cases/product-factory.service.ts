@@ -8,6 +8,7 @@ export class ProductFactoryService {
     const product = new Product();
     product.name = productDTO.name;
     product.value = productDTO.value;
+    product.category = productDTO.category;
     product.quantity = productDTO.quantity;
     product.description = productDTO.description;
     return product;
