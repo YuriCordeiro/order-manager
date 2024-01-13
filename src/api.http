@@ -34,15 +34,21 @@ GET http://localhost:3000/orders
 ### Get All Products
 GET http://localhost:3000/products
 
+
+### Get Product By Category
+GET http://localhost:3000/products/category/lanche
+
+
 ### Create Product
 POST http://localhost:3000/products
 Content-Type: application/json
 
 {     
-    "name": "BigMac",     
-    "value": 22.5,
-    "quantity": 15,
-    "description": "Um saboroso hamburguer BEM bacana" 
+    "name": "Coca",
+    "category": "bebida",
+    "value": 10.5,
+    "quantity": 1,
+    "description": "Uma bebidinha gelada Majin Boo hi hi hi" 
 }
 
 ### Delete Product

@@ -27,4 +27,4 @@ import { Payment, PaymentSchema } from './model/payment.model';
   ],
   exports: [IDataServices],
 })
-export class MongoDataServicesModule { }
+export class MongoDataServicesModule {}

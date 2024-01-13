@@ -40,6 +40,14 @@ export class ProductController {
     return this.productUseCases.getProductById(productId);
   }
 
+  @Get('/category/:category')
+  async getProductByCategory(
+    @Param('category') category: string,
+  ): Promise<Product[]> {
+    this.logger.log(`getProductByCategory(string) - Start`);
+    return this.productUseCases.getProductByCategory(category);
+  }
+
   @Put('/:productId')
   async updateProduct(
     @Param('productId') productId: string,

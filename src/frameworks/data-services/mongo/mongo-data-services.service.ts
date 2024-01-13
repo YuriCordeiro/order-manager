@@ -10,12 +10,13 @@ import { OrderRepositoryImpl } from './repository/order.repository';
 import { Product, ProductDocument } from './model/product.model';
 import { Order, OrderDocument } from './model/order.model';
 import { Payment, PaymentDocument } from './model/payment.model';
+import { ProductRepositoryImpl } from './repository/product.repository';
 
 @Injectable()
 export class MongoDataServices
   implements IDataServices, OnApplicationBootstrap {
   customers: CustomerRepositoryImpl;
-  products: IGenericRepository<Product>;
+  products: ProductRepositoryImpl;
   orders: OrderRepositoryImpl;
   payments: IGenericRepository<Payment>
 
@@ -32,7 +33,7 @@ export class MongoDataServices
 
   onApplicationBootstrap() {
     this.customers = new CustomerRepositoryImpl(this.CustomerRepository);
-    this.products = new MongoGenericRepository(this.ProductRepository);
+    this.products = new ProductRepositoryImpl(this.ProductRepository);
     this.orders = new OrderRepositoryImpl(this.OrderRepository);
     this.payments = new MongoGenericRepository(this.PaymentRepository);
   }
