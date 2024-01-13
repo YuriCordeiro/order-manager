@@ -47,3 +47,15 @@ Content-Type: application/json
 
 ### Delete Product
 DELETE http://localhost:3000/products/659c8f42f13ebe00d6809135
+
+### Create Payment
+POST http://localhost:3000/payment
+Content-Type: application/json
+
+{     
+    "name": "CASH",     
+    "description": "Cash Payment Method" 
+}
+
+### Gel All Payment Methods
+GET http://localhost:3000/payment

@@ -6,6 +6,7 @@ import { MongoDataServices } from './mongo-data-services.service';
 import { ConfigModule } from '@nestjs/config';
 import { Product, ProductSchema } from './model/product.model';
 import { Order, OrderSchema } from './model/order.model';
+import { Payment, PaymentSchema } from './model/payment.model';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { Order, OrderSchema } from './model/order.model';
       { name: Customer.name, schema: CustomerSchema },
       { name: Product.name, schema: ProductSchema },
       { name: Order.name, schema: OrderSchema },
+      { name: Payment.name, schema: PaymentSchema }
     ]),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING),
   ],
