@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
-export type PaymentDocument = Payment & Document;
+export type PaymentMethodDocument = PaymentMethod & Document;
 
 @Schema()
-export class Payment {
+export class PaymentMethod {
     @Prop()
     name: string;
     @Prop()
     description: string;
 }
 
-export const PaymentSchema = SchemaFactory.createForClass(Payment);
+export const PaymentMethodSchema = SchemaFactory.createForClass(PaymentMethod);

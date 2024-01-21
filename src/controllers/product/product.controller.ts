@@ -13,12 +13,14 @@ import {
 import { ProductUseCases } from 'src/use-cases/product.use-case';
 import { ProductDTO } from 'src/dto/product.dto';
 import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Products')
 @Controller('/products')
 export class ProductController {
   private readonly logger = new Logger(ProductController.name);
 
-  constructor(private productUseCases: ProductUseCases) {}
+  constructor(private productUseCases: ProductUseCases) { }
 
   @Post()
   async createProduct(@Body() ProductDTO: ProductDTO): Promise<Product> {

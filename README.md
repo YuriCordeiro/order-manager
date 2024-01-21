@@ -39,7 +39,9 @@ $ docker-compose up -d
 $ docker compose up -d
 ```
 
-Now the application should be accessible by http://localhost:3000
+Now the application should be accessible by the following URL: http://localhost:3000
+
+The Application Swagger should be accessible by the following URL: http://localhost:3000/api#/
 </details>
 
 
@@ -66,7 +68,9 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-Now the application should be accessible by http://localhost:3000
+Now the application should be accessible by the following URL: http://localhost:3000
+
+The Application Swagger should be accessible by the following URL: http://localhost:3000/api#/
 
 ## Test
 

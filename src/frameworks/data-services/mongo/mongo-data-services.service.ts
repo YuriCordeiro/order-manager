@@ -9,7 +9,7 @@ import { CustomerRepositoryImpl } from './repository/customer.repository';
 import { OrderRepositoryImpl } from './repository/order.repository';
 import { Product, ProductDocument } from './model/product.model';
 import { Order, OrderDocument } from './model/order.model';
-import { Payment, PaymentDocument } from './model/payment.model';
+import { PaymentMethod, PaymentMethodDocument } from './model/payment.model';
 import { ProductRepositoryImpl } from './repository/product.repository';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class MongoDataServices
   customers: CustomerRepositoryImpl;
   products: ProductRepositoryImpl;
   orders: OrderRepositoryImpl;
-  payments: IGenericRepository<Payment>
+  payments: IGenericRepository<PaymentMethod>
 
   constructor(
     @InjectModel(Customer.name)
@@ -27,8 +27,8 @@ export class MongoDataServices
     private ProductRepository: Model<ProductDocument>,
     @InjectModel(Order.name)
     private OrderRepository: Model<OrderDocument>,
-    @InjectModel(Payment.name)
-    private PaymentRepository: Model<PaymentDocument>
+    @InjectModel(PaymentMethod.name)
+    private PaymentRepository: Model<PaymentMethodDocument>
   ) { }
 
   onApplicationBootstrap() {

@@ -1,9 +1,11 @@
 import { Body, Controller, Get, Param, Post, Put, Delete, HttpStatus, HttpCode, Logger, Query, NotFoundException } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CustomerDTO } from 'src/dto/customer.dto';
 import { Customer } from 'src/frameworks/data-services/mongo/model/customer.model';
 import { CustomerUseCases } from 'src/use-cases/customer.use-case';
 
-@Controller('customer')
+@ApiTags('Customers')
+@Controller('customers')
 export class CustomerController {
 
     private readonly logger = new Logger(CustomerController.name);

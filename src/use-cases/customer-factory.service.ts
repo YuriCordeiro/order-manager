@@ -22,7 +22,7 @@ export class CustomerFactoryService {
     /**
      * Convert DTO to Entity
      * @param customerDTO 
-     * @returns 
+     * @returns Customer Entity
      */
     updateCustomer(customerDTO: CustomerDTO) {
         const updatedCustomer = new Customer();

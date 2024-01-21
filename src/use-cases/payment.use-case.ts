@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
 import { PaymentFactoryService } from "./payment-factory.service";
-import { Payment } from "src/frameworks/data-services/mongo/model/payment.model";
+import { PaymentMethod } from "src/frameworks/data-services/mongo/model/payment.model";
 import { PaymentDTO } from "src/dto/payment.dto";
 
 @Injectable()
@@ -9,11 +9,11 @@ export class PaymentUseCases {
 
     constructor(private dataServices: IDataServices, private paymentFactoryService: PaymentFactoryService) { }
 
-    getAllPayments(): Promise<Payment[]> {
+    getAllPayments(): Promise<PaymentMethod[]> {
         return this.dataServices.payments.getAll();
     }
 
-    getPaymentById(id: string): Promise<Payment> {
+    getPaymentById(id: string): Promise<PaymentMethod> {
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
             const foundPayment = this.dataServices.payments.get(id);
 
@@ -29,12 +29,12 @@ export class PaymentUseCases {
 
     }
 
-    createPayment(paymentDTO: PaymentDTO): Promise<Payment> {
+    createPayment(paymentDTO: PaymentDTO): Promise<PaymentMethod> {
         const newPayment = this.paymentFactoryService.createNewPayment(paymentDTO);
         return this.dataServices.payments.create(newPayment);
     }
 
-    updatePayment(paymentId: string, paymentDTO: PaymentDTO): Promise<Payment> {
+    updatePayment(paymentId: string, paymentDTO: PaymentDTO): Promise<PaymentMethod> {
         const newPayment = this.paymentFactoryService.updatePayment(paymentDTO);
         return this.dataServices.payments.update(paymentId, newPayment);
     }

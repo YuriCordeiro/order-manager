@@ -1,14 +1,14 @@
 ### Get All Customers
-GET http://localhost:3000/customer
+GET http://localhost:3000/customers
 
 ### Get Customer By ID
-GET http://localhost:3000/customer/id/659c85f6a875970be57aa7c5
+GET http://localhost:3000/customers/id/659c85f6a875970be57aa7c5
 
 ### Get Customer by CPF
-GET http://localhost:3000/customer/cpf/1234
+GET http://localhost:3000/customers/cpf/1234
 
 ### Create Customer
-POST http://localhost:3000/customer
+POST http://localhost:3000/customers
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### Update Customer
-PUT http://localhost:3000/customer/659c85f6a875970be57aa7c5
+PUT http://localhost:3000/customers/659c85f6a875970be57aa7c5
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ### Delete Customer
-DELETE http://localhost:3000/customer/659c85f6a875970be57aa7c5
+DELETE http://localhost:3000/customers/659c85f6a875970be57aa7c5
 
 ### Get All Orders
 GET http://localhost:3000/orders
@@ -55,7 +55,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/products/659c8f42f13ebe00d6809135
 
 ### Create Payment
-POST http://localhost:3000/payment
+POST http://localhost:3000/payment-methods
 Content-Type: application/json
 
 {     
@@ -64,4 +64,4 @@ Content-Type: application/json
 }
 
 ### Gel All Payment Methods
-GET http://localhost:3000/payment
+GET http://localhost:3000/payment-methods

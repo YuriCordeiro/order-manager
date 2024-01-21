@@ -10,10 +10,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { OrderDTO } from 'src/dto/order.dto';
 import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 import { OrderUseCases } from 'src/use-cases/order.use-case';
 
+@ApiTags('Orders')
 @Controller('/orders')
 export class OrderController {
   private readonly logger = new Logger(OrderController.name);

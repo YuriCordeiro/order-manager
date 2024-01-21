@@ -1,8 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Logger } from '@nestjs/common';
 import { PaymentDTO } from '../../dto/payment.dto';
 import { PaymentUseCases } from 'src/use-cases/payment.use-case';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('payment')
+@ApiTags('Payment Methods')
+@Controller('payment-methods')
 export class PaymentController {
 
   private readonly logger = new Logger(PaymentController.name);
