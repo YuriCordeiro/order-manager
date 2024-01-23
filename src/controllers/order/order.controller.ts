@@ -31,7 +31,7 @@ export class OrderController {
   @Get()
   async getAllOrders() {
     this.logger.log(`getAllOrders() - Start`);
-    return this.orderUseCases.getAllOrders();
+    return await this.orderUseCases.getAllOrders();
   }
 
   @Get('/id/:orderId')

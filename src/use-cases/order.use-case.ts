@@ -12,11 +12,19 @@ import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 export class OrderUseCases {
   constructor(
     private dataServices: IDataServices,
-    private orderFactoryService: OrderFactoryService,
-  ) {}
+    private orderFactoryService: OrderFactoryService
+  ) { }
 
-  getAllOrders(): Promise<Order[]> {
-    return this.dataServices.orders.getAll();
+  /**
+   * 
+   * @returns All registered orders sorted by queuePosition field, asc
+   */
+  async getAllOrders(): Promise<Order[]> {
+    return (await this.dataServices.orders.getAll())
+      .sort(
+        // Order by asc
+        (a, b) => a.queuePosition - b.queuePosition
+      );
   }
 
   getOrderById(id: string): Promise<Order> {
@@ -35,30 +43,19 @@ export class OrderUseCases {
     }
   }
 
-  createOrder(): Promise<Order> {
-    const newOrder = this.orderFactoryService.createNewOrder();
+  async createOrder(): Promise<Order> {
+    const newOrder = this.orderFactoryService.createNewOrder(await this.mapActualQueuePosition());
     return this.dataServices.orders.create(newOrder);
+  }
+
+  async mapActualQueuePosition() {
+    return (await this.dataServices.orders.getAll()).length + 1;
   }
 
   updateOrder(orderId: string, orderDTO: OrderDTO): Promise<Order> {
     const newOrder = this.orderFactoryService.updateOrder(orderDTO);
     return this.dataServices.orders.update(orderId, newOrder);
   }
-
-  //TODO: Implement Add Payment Method
-    //Validate if it has Payment Method
-    //Add Payment Method
-
-  //TODO: Implement add product to order
-    //Find Customer By ID
-    //Add Customer
-    //Update order
-
-  //TODO: Implement add product to order
-    //Find Product By ID
-    //Add Product
-    //Recalculate total value
-    //Update Order
 
   deleteOrder(orderId: string) {
     const foundOrder = this.getOrderById(orderId);

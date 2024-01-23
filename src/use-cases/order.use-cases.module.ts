@@ -4,8 +4,10 @@ import { OrderFactoryService } from './order-factory.service';
 import { OrderUseCases } from './order.use-case';
 
 @Module({
-  imports: [DataServicesModule],
+  imports: [
+    DataServicesModule
+  ],
   providers: [OrderFactoryService, OrderUseCases],
   exports: [OrderFactoryService, OrderUseCases],
 })
-export class OrderUseCaseModule {}
+export class OrderUseCaseModule { }
