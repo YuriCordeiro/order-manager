@@ -35,8 +35,8 @@ export class OrderUseCases {
     }
   }
 
-  createOrder(orderDTO: OrderDTO): Promise<Order> {
-    const newOrder = this.orderFactoryService.createNewOrder(orderDTO);
+  createOrder(): Promise<Order> {
+    const newOrder = this.orderFactoryService.createNewOrder();
     return this.dataServices.orders.create(newOrder);
   }
 
@@ -44,6 +44,21 @@ export class OrderUseCases {
     const newOrder = this.orderFactoryService.updateOrder(orderDTO);
     return this.dataServices.orders.update(orderId, newOrder);
   }
+
+  //TODO: Implement Add Payment Method
+    //Validate if it has Payment Method
+    //Add Payment Method
+
+  //TODO: Implement add product to order
+    //Find Customer By ID
+    //Add Customer
+    //Update order
+
+  //TODO: Implement add product to order
+    //Find Product By ID
+    //Add Product
+    //Recalculate total value
+    //Update Order
 
   deleteOrder(orderId: string) {
     const foundOrder = this.getOrderById(orderId);

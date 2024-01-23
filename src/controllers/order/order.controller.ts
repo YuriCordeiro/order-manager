@@ -23,9 +23,9 @@ export class OrderController {
   constructor(private orderUseCases: OrderUseCases) { }
 
   @Post()
-  async createOrder(@Body() orderDTO: OrderDTO): Promise<Order> {
-    this.logger.log(`createOrder(OrderDTO) - Start`);
-    return this.orderUseCases.createOrder(orderDTO);
+  async createOrder(): Promise<Order> {
+    this.logger.log(`createOrder() - Start`);
+    return this.orderUseCases.createOrder();
   }
 
   @Get()

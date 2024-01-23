@@ -4,12 +4,10 @@ import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 
 @Injectable()
 export class OrderFactoryService {
-  createNewOrder(orderDTO: OrderDTO): Order {
+  createNewOrder(): Order {
     const order = new Order();
-    order.products = orderDTO.products;
-    order.paymentMethod = orderDTO.paymentMethod;
-    order.status = orderDTO.status;
-    order.value = orderDTO.value;
+    order.status = "Em Preparação";
+    order.value = 0;
     return order;
   }
 
