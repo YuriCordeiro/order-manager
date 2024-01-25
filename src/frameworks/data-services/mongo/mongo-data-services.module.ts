@@ -16,7 +16,7 @@ import { Cart, CartSchema } from './model/cart.model';
       { name: Customer.name, schema: CustomerSchema },
       { name: Product.name, schema: ProductSchema },
       { name: Order.name, schema: OrderSchema },
-      { name: PaymentMethod.name, schema: PaymentMethodSchema }
+      { name: PaymentMethod.name, schema: PaymentMethodSchema },
       { name: Cart.name, schema: CartSchema}
     ]),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING),

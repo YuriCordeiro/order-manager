@@ -13,6 +13,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { Cart } from '../../frameworks/data-services/mongo/model/cart.model';
 import { CartUseCases } from 'src/use-cases/cart.use-case';
+import { CartAddProductDTO } from 'src/dto/cart-add-product.dto';
 
 @ApiTags('Cart')
 @Controller('/cart')
@@ -43,7 +44,7 @@ export class CartController {
   async addProductToCart(
     @Param('cartId') cartId: string,
     @Param('productId') productId: string,
-    @Body() quantity: number): Promise<Cart> {
+    @Body() quantity: CartAddProductDTO): Promise<Cart> {
     this.logger.log(`addProductToCart(string, string) - Start`);
     return this.cartUseCases.addProductToCart(cartId, productId, quantity);
   }

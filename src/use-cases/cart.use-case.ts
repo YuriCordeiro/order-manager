@@ -5,6 +5,7 @@ import { CustomerDTO } from "src/dto/customer.dto";
 import { Customer } from "src/frameworks/data-services/mongo/model/customer.model";
 import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
+import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
 
 @Injectable()
 export class CartUseCases {
@@ -34,14 +35,19 @@ export class CartUseCases {
         }
     }
 
-    async addProductToCart(cartId: string, productId: string, quantity: number): Promise<Cart> {
+    async addProductToCart(cartId: string, productId: string, quantity: CartAddProductDTO): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
         const foundProduct = await this.dataServices.products.get(productId);
+        foundProduct.quantity = quantity.quantity;
 
+        //verificar se o produto ja esta no carrinho
+
+        let sumProduct: number = 0;
         if (foundProduct != null) {
-            foundCart.products.push({ product: productId, quantity: quantity });
+            foundCart.products.push(foundProduct);
 
-            foundCart.total += foundProduct.value * quantity;
+            sumProduct = foundProduct.value * foundProduct.quantity;
+            foundCart.total += sumProduct;
 
             return this.dataServices.carts.update(cartId, foundCart);
         } else {
@@ -51,8 +57,8 @@ export class CartUseCases {
 
     async addPaymentMethodToCart(cartId: string, paymentId: string): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
-        const foundPayment = await this.dataServices.payments.get(paymentId);
-        foundCart.paymentMethod = paymentId;
+        const foundPaymentMethod = await this.dataServices.payments.get(paymentId);
+        foundCart.paymentMethod = foundPaymentMethod;
 
         return this.dataServices.carts.update(cartId, foundCart);
     }
@@ -60,8 +66,9 @@ export class CartUseCases {
     async addCustomerToCart(cartId: string, customerId: string): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
         const foundCustomer = await this.dataServices.customers.get(customerId);
-        foundCart.customer = customerId;
+        foundCart.customer = foundCustomer;
 
         return this.dataServices.carts.update(cartId, foundCart);
     }
+
 }

@@ -6,6 +6,7 @@ export class CartFactoryService {
 
     createNewCart() {
         const newCart = new Cart();
+        newCart.total = 0;
         return newCart;
     }
 }

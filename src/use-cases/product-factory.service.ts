@@ -9,7 +9,7 @@ export class ProductFactoryService {
     product.name = productDTO.name;
     product.value = productDTO.value;
     product.category = productDTO.category;
-    product.quantity = productDTO.quantity;
+    product.quantity = 0;
     product.description = productDTO.description;
     return product;
   }

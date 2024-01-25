@@ -12,7 +12,6 @@ import { Order, OrderDocument } from './model/order.model';
 import { PaymentMethod, PaymentMethodDocument } from './model/payment.model';
 import { ProductRepositoryImpl } from './repository/product.repository';
 import { Cart, CartDocument } from './model/cart.model';
-import { CartRepositoryImpl } from './repository/cart.repository';
 
 @Injectable()
 export class MongoDataServices
