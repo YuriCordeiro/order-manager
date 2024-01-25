@@ -9,15 +9,18 @@ import { PaymentController } from './controllers/payment/payment.controller';
 import { ProductUseCaseModule } from './use-cases/product.use-cases.module';
 import { OrderUseCaseModule } from './use-cases/order.use-cases.module';
 import { PaymentUseCaseModule } from './use-cases/payment.use-cases.module';
+import { CartController } from './controllers/cart/cart.controller';
+import { CartUseCaseModule } from './use-cases/cart.use-cases.module';
 
 @Module({
-  imports: [CustomerUseCaseModule, ProductUseCaseModule, OrderUseCaseModule, PaymentUseCaseModule],
+  imports: [CustomerUseCaseModule, ProductUseCaseModule, OrderUseCaseModule, PaymentUseCaseModule, CartUseCaseModule],
   controllers: [
     AppController,
     CustomerController,
     ProductController,
     OrderController,
-    PaymentController
+    PaymentController,
+    CartController
   ],
   providers: [],
 })
