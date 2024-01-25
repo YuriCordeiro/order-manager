@@ -43,9 +43,9 @@ export class OrderUseCases {
     }
   }
 
-  async createOrder(): Promise<Order> {
-    const newOrder = this.orderFactoryService.createNewOrder(await this.mapActualQueuePosition());
-    return this.dataServices.orders.create(newOrder);
+  async createOrder(cartId: string): Promise<Order> {
+    const newOrder = this.orderFactoryService.createNewOrder(cartId, await this.mapActualQueuePosition());
+    return this.dataServices.orders.create(await newOrder);
   }
 
   async mapActualQueuePosition() {

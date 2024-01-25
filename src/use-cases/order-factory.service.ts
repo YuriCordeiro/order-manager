@@ -1,13 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { OrderDTO } from 'src/dto/order.dto';
 import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
+import { DataServicesModule } from 'src/services/data-services.module';
 
 @Injectable()
 export class OrderFactoryService {
-  createNewOrder(queuePosition: number): Order {
+  constructor(private dataServices: IDataServices) {}
+
+  async createNewOrder(cartId: string, queuePosition: number): Promise<Order> {
+    const foundCart = await this.dataServices.carts.get(cartId);
     const order = new Order();
+    order.customer = foundCart.customer;
+    order.products = foundCart.products;
+    order.paymentMethod = foundCart.paymentMethod;
+    order.value = foundCart.total;
     order.status = "Em Preparação";
-    order.value = 0;
     order.queuePosition = queuePosition;
     return order;
   }

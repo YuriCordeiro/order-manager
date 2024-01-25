@@ -6,6 +6,7 @@ import { Customer } from "src/frameworks/data-services/mongo/model/customer.mode
 import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
+import { Product } from "src/frameworks/data-services/mongo/model/product.model";
 
 @Injectable()
 export class CartUseCases {
@@ -40,19 +41,14 @@ export class CartUseCases {
         const foundProduct = await this.dataServices.products.get(productId);
         foundProduct.quantity = quantity.quantity;
 
-        //verificar se o produto ja esta no carrinho
-
-        let sumProduct: number = 0;
-        if (foundProduct != null) {
-            foundCart.products.push(foundProduct);
-
-            sumProduct = foundProduct.value * foundProduct.quantity;
-            foundCart.total += sumProduct;
-
-            return this.dataServices.carts.update(cartId, foundCart);
-        } else {
+        if (!foundProduct) {
             throw new NotFoundException(`Product with id: ${productId} not found at database.`);
         }
+
+        this.validateProductQuantity(foundCart, foundProduct);
+        foundCart.total += this.calculateProductQuantity(foundProduct);
+
+        return this.dataServices.carts.update(cartId, foundCart);
     }
 
     async addPaymentMethodToCart(cartId: string, paymentId: string): Promise<Cart> {
@@ -71,4 +67,22 @@ export class CartUseCases {
         return this.dataServices.carts.update(cartId, foundCart);
     }
 
+    private validateProductQuantity(selectedCart: Cart, selectedProduct: Product): void {
+        let cartContainProduct: boolean = false;
+        selectedCart.products.forEach(product => {
+            if (product.name === selectedProduct.name) {
+                cartContainProduct = true;
+                product.quantity += product.quantity;
+                return;
+            }
+        });
+
+        if (!cartContainProduct) {
+            selectedCart.products.push(selectedProduct);
+        }
+    }
+
+    private calculateProductQuantity(selectedProduct: Product): number {
+        return selectedProduct.value * selectedProduct.quantity;
+    }
 }

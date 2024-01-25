@@ -22,10 +22,10 @@ export class OrderController {
 
   constructor(private orderUseCases: OrderUseCases) { }
 
-  @Post()
-  async createOrder(): Promise<Order> {
+  @Post('/cart/:cartId')
+  async createOrder(@Param('cartId') cartId: string): Promise<Order> {
     this.logger.log(`createOrder() - Start`);
-    return this.orderUseCases.createOrder();
+    return this.orderUseCases.createOrder(cartId);
   }
 
   @Get()
