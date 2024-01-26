@@ -1,15 +1,15 @@
 version: '3'
 services:
-  # order_manager:
-  #   build: .
-  #   container_name: order_manager
-  #   image: order_manager
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - MONGO_CONNECTION_STRING=mongodb://mongodb/order-manager
-  #   depends_on:
-  #     - mongodb
+  order_manager:
+    build: .
+    container_name: order_manager
+    image: order_manager
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://mongodb/order-manager
+    depends_on:
+      - mongodb
 
   mongodb:
     container_name: mongodb

@@ -1,10 +1,7 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Logger,
   Param,
   Post,
@@ -66,11 +63,4 @@ export class CartController {
     this.logger.log(`addCustomerToCart(string, string) - Start`);
     return this.cartUseCases.addCustomerToCart(cartId, customerId);
   }
-
-  // @HttpCode(HttpStatus.NO_CONTENT)
-  // @Delete('/:cartId')
-  // async deleteCart(@Param('cartId') cartId: string): Promise<void> {
-  //   this.logger.log(`deleteCart(String) - Start`);
-  //   return this.cartUseCases.deleteCart(cartId);
-  // }
 }

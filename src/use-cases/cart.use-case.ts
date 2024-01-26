@@ -7,11 +7,12 @@ import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
 import { Product } from "src/frameworks/data-services/mongo/model/product.model";
+import { ProductUseCases } from "./product.use-case";
 
 @Injectable()
 export class CartUseCases {
 
-    constructor(private dataServices: IDataServices, private cartFactoryService: CartFactoryService) { }
+    constructor(private dataServices: IDataServices, private cartFactoryService: CartFactoryService, private productUseCase: ProductUseCases) { }
 
     async getAllCarts(): Promise<Cart[]> {
         return this.dataServices.carts.getAll();
@@ -38,12 +39,8 @@ export class CartUseCases {
 
     async addProductToCart(cartId: string, productId: string, quantity: CartAddProductDTO): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
-        const foundProduct = await this.dataServices.products.get(productId);
+        const foundProduct = await this.productUseCase.getProductById(productId);
         foundProduct.quantity = quantity.quantity;
-
-        if (!foundProduct) {
-            throw new NotFoundException(`Product with id: ${productId} not found at database.`);
-        }
 
         this.validateProductQuantity(foundCart, foundProduct);
         foundCart.total += this.calculateProductQuantity(foundProduct);
