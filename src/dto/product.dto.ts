@@ -10,6 +10,11 @@ export class ProductDTO {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
+  readonly sku: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly category: string;
 
   @ApiProperty()

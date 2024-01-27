@@ -7,6 +7,8 @@ export class Product {
   @Prop()
   name: string;
   @Prop()
+  sku: string;
+  @Prop()
   category: string;
   @Prop()
   value: number;

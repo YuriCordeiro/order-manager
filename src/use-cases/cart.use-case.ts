@@ -1,8 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
-import { CustomerFactoryService } from "./customer-factory.service";
-import { CustomerDTO } from "src/dto/customer.dto";
-import { Customer } from "src/frameworks/data-services/mongo/model/customer.model";
 import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
@@ -67,7 +64,7 @@ export class CartUseCases {
     private validateProductQuantity(selectedCart: Cart, selectedProduct: Product): void {
         let cartContainProduct: boolean = false;
         selectedCart.products.forEach(product => {
-            if (product.name === selectedProduct.name) {
+            if (product.sku === selectedProduct.sku) {
                 cartContainProduct = true;
                 product.quantity += product.quantity;
                 return;
