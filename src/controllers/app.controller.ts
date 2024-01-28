@@ -6,8 +6,7 @@ import { ApiExcludeController } from "@nestjs/swagger";
 export class AppController {
 
     @Get()
-    showGreetings(@Res() res) {
+    redirectToSwagger(@Res() res) {
         return res.redirect('/api#');
-        //return "Application is running and ready to receive requests!";
     }
 }

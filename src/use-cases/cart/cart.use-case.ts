@@ -4,7 +4,7 @@ import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
 import { Product } from "src/frameworks/data-services/mongo/model/product.model";
-import { ProductUseCases } from "./product.use-case";
+import { ProductUseCases } from "../product/product.use-case";
 
 @Injectable()
 export class CartUseCases {

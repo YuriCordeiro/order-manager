@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Cart } from '../../frameworks/data-services/mongo/model/cart.model';
-import { CartUseCases } from 'src/use-cases/cart.use-case';
+import { CartUseCases } from 'src/use-cases/cart/cart.use-case';
 import { CartAddProductDTO } from 'src/dto/cart-add-product.dto';
 
-@ApiTags('Cart')
-@Controller('/cart')
+@ApiTags('Carts')
+@Controller('/carts')
 export class CartController {
   private readonly logger = new Logger(CartController.name);
 
@@ -55,7 +55,7 @@ export class CartController {
     return this.cartUseCases.addPaymentMethodToCart(cartId, paymentId);
   }
 
-  @Put('/:cartId/customer/:customerId')
+  @Put('/:cartId/customers/:customerId')
   async addCustomerToCart(
     @Param('cartId') cartId: string,
     @Param('customerId') customerId: string,

@@ -55,7 +55,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/products/659c8f42f13ebe00d6809135
 
 ### Create Payment
-POST http://localhost:3000/payment-methods
+POST http://localhost:3000/payments
 Content-Type: application/json
 
 {     
@@ -64,4 +64,4 @@ Content-Type: application/json
 }
 
 ### Gel All Payment Methods
-GET http://localhost:3000/payment-methods
+GET http://localhost:3000/payments

@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 
-import { CustomerUseCaseModule } from './use-cases/customer.use-cases.module';
+import { CustomerUseCaseModule } from './use-cases/customer/customer.use-cases.module';
 import { AppController } from './controllers/app.controller';
 import { OrderController } from './controllers/order/order.controller';
 import { CustomerController } from './controllers/customer/customer.controller';
 import { ProductController } from './controllers/product/product.controller';
 import { PaymentController } from './controllers/payment/payment.controller';
-import { ProductUseCaseModule } from './use-cases/product.use-cases.module';
-import { OrderUseCaseModule } from './use-cases/order.use-cases.module';
-import { PaymentUseCaseModule } from './use-cases/payment.use-cases.module';
+import { ProductUseCaseModule } from './use-cases/product/product.use-cases.module';
+import { OrderUseCaseModule } from './use-cases/order/order.use-cases.module';
+import { PaymentUseCaseModule } from './use-cases/payment/payment.use-cases.module';
 import { CartController } from './controllers/cart/cart.controller';
-import { CartUseCaseModule } from './use-cases/cart.use-cases.module';
+import { CartUseCaseModule } from './use-cases/cart/cart.use-cases.module';
 
 @Module({
   imports: [CustomerUseCaseModule, ProductUseCaseModule, OrderUseCaseModule, PaymentUseCaseModule, CartUseCaseModule],

@@ -13,7 +13,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { OrderDTO } from 'src/dto/order.dto';
 import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
-import { OrderUseCases } from 'src/use-cases/order.use-case';
+import { OrderUseCases } from 'src/use-cases/order/order.use-case';
 
 @ApiTags('Orders')
 @Controller('/orders')
@@ -38,6 +38,12 @@ export class OrderController {
   async getOrderById(@Param('orderId') orderId: string): Promise<Order> {
     this.logger.log(`getOrderById(string) - Start`);
     return this.orderUseCases.getOrderById(orderId);
+  }
+
+  @Get('/status/:status')
+  async getOrderByStatus(@Param('status') status: string): Promise<Order[]> {
+    this.logger.log(`getOrderByStatus(string) - Start`);
+    return this.orderUseCases.getOrderByStatus(status);
   }
 
   @Put('/:orderId')

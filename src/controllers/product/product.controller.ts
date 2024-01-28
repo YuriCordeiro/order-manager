@@ -10,7 +10,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ProductUseCases } from 'src/use-cases/product.use-case';
+import { ProductUseCases } from 'src/use-cases/product/product.use-case';
 import { ProductDTO } from 'src/dto/product.dto';
 import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
 import { ApiTags } from '@nestjs/swagger';

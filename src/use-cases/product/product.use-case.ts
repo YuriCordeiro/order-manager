@@ -13,23 +13,26 @@ export class ProductUseCases {
   constructor(
     private dataServices: IDataServices,
     private productFactoryService: ProductFactoryService,
-  ) {}
+  ) { }
 
   getAllProducts(): Promise<Product[]> {
     return this.dataServices.products.getAll();
   }
 
+  private isProductValid(foundProduct: Promise<Product>, id: string) {
+    if (foundProduct != null) {
+      return foundProduct;
+    } else {
+      throw new NotFoundException(
+        `Product with id: ${id} not found at database.`,
+      );
+    }
+  }
+
   getProductById(id: string): Promise<Product> {
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
       const foundProduct = this.dataServices.products.get(id);
-
-      if (foundProduct != null) {
-        return foundProduct;
-      } else {
-        throw new NotFoundException(
-          `Product with id: ${id} not found at database.`,
-        );
-      }
+      return this.isProductValid(foundProduct, id);
     } else {
       throw new BadRequestException(`'${id}' is not a valid ObjectID`);
     }
@@ -51,6 +54,7 @@ export class ProductUseCases {
 
   deleteProduct(productId: string) {
     const foundProduct = this.getProductById(productId);
+    this.isProductValid(foundProduct, productId);
     this.dataServices.products.delete(productId);
   }
 }

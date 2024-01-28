@@ -10,6 +10,7 @@ import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 
 @Injectable()
 export class OrderUseCases {
+
   constructor(
     private dataServices: IDataServices,
     private orderFactoryService: OrderFactoryService
@@ -41,6 +42,10 @@ export class OrderUseCases {
     } else {
       throw new BadRequestException(`'${id}' is not a valid ObjectID`);
     }
+  }
+
+  async getOrderByStatus(status: string): Promise<Order[]> {
+    return this.dataServices.orders.getOrderByStatus(status);
   }
 
   async createOrder(cartId: string): Promise<Order> {
