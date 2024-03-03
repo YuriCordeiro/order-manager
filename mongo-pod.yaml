@@ -11,11 +11,6 @@ spec:
     ports:
     - containerPort: 27017
     env:
-      - name: MONGO_CONNECTION_STRING
-        valueFrom:
-          configMapKeyRef:
-            name: mongodb-config
-            key: MONGO_CONNECTION_STRING
       - name: AUTH
         valueFrom:
           configMapKeyRef:
