@@ -13,6 +13,7 @@ export class TransactionFactoryService {
         const transaction = new Transaction();
         transaction.paymentMethod = foundPaymentMethod;
         transaction.total = foundCart.total;
+        transaction.status = 'Pendente';
         return transaction;
     }
 }

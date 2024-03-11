@@ -62,7 +62,7 @@ export class OrderController {
     return this.orderUseCases.updateOrder(orderId, orderDTO);
   }
 
-  @Put('/:orderId')
+  @Put('/:orderId/status')
   async updateStatus(
     @Param('orderId') orderId: string,
     @Body() putOrderStatusDTO: PutOrderStatusDTO,

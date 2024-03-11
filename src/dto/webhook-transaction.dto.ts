@@ -11,4 +11,9 @@ export class WebhookDTO {
   @IsString()
   @IsNotEmpty()
   readonly transactionId: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly orderId: string;
 }

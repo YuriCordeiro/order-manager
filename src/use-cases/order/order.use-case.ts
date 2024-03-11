@@ -8,6 +8,7 @@ import { OrderFactoryService } from './order-factory.service';
 import { OrderDTO } from 'src/dto/order.dto';
 import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 import { PutOrderStatusDTO } from 'src/dto/put-order-status.dto';
+import { WebhookDTO } from 'src/dto/webhook-transaction.dto';
 
 @Injectable()
 export class OrderUseCases {
@@ -79,6 +80,12 @@ export class OrderUseCases {
     const foundOrder = await this.getOrderById(orderId);
     foundOrder.status = putOrderStatusDTO.status;
     return this.dataServices.orders.update(orderId, foundOrder);
+  }
+
+  async updateOrderTransactionStatus(payload: WebhookDTO): Promise<Order> {
+    const foundOrder = await this.getOrderById(payload.orderId);
+    foundOrder.paymentTransaction.status = payload.status;
+    return this.dataServices.orders.update(payload.orderId, foundOrder);
   }
 
   deleteOrder(orderId: string) {
