@@ -45,10 +45,10 @@ export class CartUseCases {
         return this.dataServices.carts.update(cartId, foundCart);
     }
 
-    async addPaymentMethodToCart(cartId: string, paymentId: string): Promise<Cart> {
+    async addPaymentTransactionToCart(cartId: string, transactionId: string): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
-        const foundPaymentMethod = await this.dataServices.payments.get(paymentId);
-        foundCart.paymentMethod = foundPaymentMethod;
+        const foundTransaction = await this.dataServices.transactions.get(transactionId);
+        foundCart.paymentTransaction = foundTransaction;
 
         return this.dataServices.carts.update(cartId, foundCart);
     }

@@ -13,10 +13,11 @@ export class OrderFactoryService {
     const order = new Order();
     order.customer = foundCart.customer;
     order.products = foundCart.products;
-    order.paymentMethod = foundCart.paymentMethod;
+    order.paymentTransaction = foundCart.paymentTransaction;
     order.value = foundCart.total;
     order.status = "Em Preparação";
     order.queuePosition = queuePosition;
+    order.createdAt = new Date();
     return order;
   }
 
@@ -27,6 +28,13 @@ export class OrderFactoryService {
       if (key === 'id') return;
       updatedOrder[key] = value;
     });
+    return updatedOrder;
+  }
+
+  updateStatus(status: string): Order {
+    const updatedOrder = new Order();
+    updatedOrder['status'] = status;
+
     return updatedOrder;
   }
 }

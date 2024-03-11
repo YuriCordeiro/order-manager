@@ -11,13 +11,14 @@ import { ApiTags } from '@nestjs/swagger';
 import { Cart } from '../../frameworks/data-services/mongo/model/cart.model';
 import { CartUseCases } from 'src/use-cases/cart/cart.use-case';
 import { CartAddProductDTO } from 'src/dto/cart-add-product.dto';
+import { TransactionUseCases } from 'src/use-cases/transaction/transaction.use-case';
 
 @ApiTags('Carts')
 @Controller('/carts')
 export class CartController {
   private readonly logger = new Logger(CartController.name);
 
-  constructor(private cartUseCases: CartUseCases) { }
+  constructor(private cartUseCases: CartUseCases, private transactionUseCases: TransactionUseCases) { }
 
   @Post()
   async createCart(): Promise<Cart> {
@@ -46,13 +47,13 @@ export class CartController {
     return this.cartUseCases.addProductToCart(cartId, productId, quantity);
   }
 
-  @Put('/:cartId/payments/:paymentId')
-  async addPaymentToCart(
+  @Put('/:cartId/transactions/:transactionId')
+  async addPaymentTransactionToCart(
     @Param('cartId') cartId: string,
-    @Param('paymentId') paymentId: string,
+    @Param('transactionId') transactionId: string,
   ): Promise<Cart> {
-    this.logger.log(`addPaymentToCart(string, string) - Start`);
-    return this.cartUseCases.addPaymentMethodToCart(cartId, paymentId);
+    this.logger.log(`addPaymentTransactionToCart(string, string) - Start`);
+    return this.cartUseCases.addPaymentTransactionToCart(cartId, transactionId);
   }
 
   @Put('/:cartId/customers/:customerId')

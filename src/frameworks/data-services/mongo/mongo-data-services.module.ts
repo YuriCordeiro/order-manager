@@ -8,6 +8,7 @@ import { Product, ProductSchema } from './model/product.model';
 import { Order, OrderSchema } from './model/order.model';
 import { PaymentMethod, PaymentMethodSchema } from './model/payment.model';
 import { Cart, CartSchema } from './model/cart.model';
+import { Transaction, TransactionSchema } from './model/transaction.model';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { Cart, CartSchema } from './model/cart.model';
       { name: Product.name, schema: ProductSchema },
       { name: Order.name, schema: OrderSchema },
       { name: PaymentMethod.name, schema: PaymentMethodSchema },
-      { name: Cart.name, schema: CartSchema}
+      { name: Cart.name, schema: CartSchema},
+      { name: Transaction.name, schema: TransactionSchema}
     ]),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING),
   ],

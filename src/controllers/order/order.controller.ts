@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { OrderDTO } from 'src/dto/order.dto';
+import { PutOrderStatusDTO } from 'src/dto/put-order-status.dto';
 import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
 import { OrderUseCases } from 'src/use-cases/order/order.use-case';
 
@@ -46,6 +47,12 @@ export class OrderController {
     return this.orderUseCases.getOrderByStatus(status);
   }
 
+  @Get('/priority')
+  async getOrdersByPriority(): Promise<Order[]> {
+    this.logger.log(`getOrdersByPriority() - Start`);
+    return this.orderUseCases.getOrdersByPriority();
+  }
+
   @Put('/:orderId')
   async updateOrder(
     @Param('orderId') orderId: string,
@@ -53,6 +60,15 @@ export class OrderController {
   ): Promise<Order> {
     this.logger.log(`updateOrder(string, OrderDTO) - Start`);
     return this.orderUseCases.updateOrder(orderId, orderDTO);
+  }
+
+  @Put('/:orderId')
+  async updateStatus(
+    @Param('orderId') orderId: string,
+    @Body() putOrderStatusDTO: PutOrderStatusDTO,
+  ): Promise<Order> {
+    this.logger.log(`updateStatus(string, OrderDTO) - Start`);
+    return this.orderUseCases.updateStatus(orderId, putOrderStatusDTO);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)

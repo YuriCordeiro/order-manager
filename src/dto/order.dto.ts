@@ -29,8 +29,4 @@ export class OrderDTO {
   @ApiProperty()
   @IsOptional()
   readonly customer: CustomerDTO;
-
-  @IsOptional()
-  @ApiProperty()
-  readonly paymentMethod: PaymentMethodDTO;
 }

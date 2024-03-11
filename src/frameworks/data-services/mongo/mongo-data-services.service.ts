@@ -12,6 +12,7 @@ import { Order, OrderDocument } from './model/order.model';
 import { PaymentMethod, PaymentMethodDocument } from './model/payment.model';
 import { ProductRepositoryImpl } from './repository/product.repository';
 import { Cart, CartDocument } from './model/cart.model';
+import { Transaction, TransactionDocument } from './model/transaction.model';
 
 @Injectable()
 export class MongoDataServices
@@ -21,6 +22,7 @@ export class MongoDataServices
   orders: OrderRepositoryImpl;
   carts: IGenericRepository<Cart>;
   payments: IGenericRepository<PaymentMethod>;
+  transactions: IGenericRepository<Transaction>;
 
   constructor(
     @InjectModel(Customer.name)
@@ -32,7 +34,9 @@ export class MongoDataServices
     @InjectModel(PaymentMethod.name)
     private PaymentRepository: Model<PaymentMethodDocument>,
     @InjectModel(Cart.name)
-    private CartRepository: Model<CartDocument>
+    private CartRepository: Model<CartDocument>,
+    @InjectModel(Transaction.name)
+    private TransactionRepository: Model<TransactionDocument>
   ) { }
 
   onApplicationBootstrap() {
@@ -41,5 +45,6 @@ export class MongoDataServices
     this.orders = new OrderRepositoryImpl(this.OrderRepository);
     this.payments = new MongoGenericRepository(this.PaymentRepository);
     this.carts = new MongoGenericRepository(this.CartRepository);
+    this.transactions = new MongoGenericRepository(this.TransactionRepository);
   }
 }
