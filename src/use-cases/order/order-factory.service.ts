@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { OrderDTO } from 'src/dto/order.dto';
-import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
+import { Order } from 'src/frameworks/data-services/mongo/entities/order.model';
 import { DataServicesModule } from 'src/services/data-services.module';
 
 @Injectable()

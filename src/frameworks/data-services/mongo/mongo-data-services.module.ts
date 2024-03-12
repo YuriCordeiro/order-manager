@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
-import { Customer, CustomerSchema } from './model/customer.model';
+import { Customer, CustomerSchema } from './entities/customer.model';
 import { MongoDataServices } from './mongo-data-services.service';
 import { ConfigModule } from '@nestjs/config';
-import { Product, ProductSchema } from './model/product.model';
-import { Order, OrderSchema } from './model/order.model';
-import { PaymentMethod, PaymentMethodSchema } from './model/payment.model';
-import { Cart, CartSchema } from './model/cart.model';
-import { Transaction, TransactionSchema } from './model/transaction.model';
+import { Product, ProductSchema } from './entities/product.model';
+import { Order, OrderSchema } from './entities/order.model';
+import { PaymentMethod, PaymentMethodSchema } from './entities/payment.model';
+import { Cart, CartSchema } from './entities/cart.model';
+import { Transaction, TransactionSchema } from './entities/transaction.model';
 
 @Module({
   imports: [

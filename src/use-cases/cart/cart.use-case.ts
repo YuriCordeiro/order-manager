@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
-import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
+import { Cart } from "src/frameworks/data-services/mongo/entities/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
-import { Product } from "src/frameworks/data-services/mongo/model/product.model";
+import { Product } from "src/frameworks/data-services/mongo/entities/product.model";
 import { ProductUseCases } from "../product/product.use-case";
 
 @Injectable()

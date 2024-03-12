@@ -1,10 +1,10 @@
-import { CustomerRepositoryImpl } from 'src/frameworks/data-services/mongo/repository/customer.repository';
+import { CustomerRepositoryImpl } from 'src/frameworks/data-services/mongo/gateways/customer.repository';
 import { IGenericRepository } from './generic-repository.abstract';
-import { OrderRepositoryImpl } from 'src/frameworks/data-services/mongo/repository/order.repository';
-import { PaymentMethod } from 'src/frameworks/data-services/mongo/model/payment.model';
-import { ProductRepositoryImpl } from 'src/frameworks/data-services/mongo/repository/product.repository';
-import { Cart } from 'src/frameworks/data-services/mongo/model/cart.model';
-import { Transaction } from 'src/frameworks/data-services/mongo/model/transaction.model';
+import { OrderRepositoryImpl } from 'src/frameworks/data-services/mongo/gateways/order.repository';
+import { PaymentMethod } from 'src/frameworks/data-services/mongo/entities/payment.model';
+import { ProductRepositoryImpl } from 'src/frameworks/data-services/mongo/gateways/product.repository';
+import { Cart } from 'src/frameworks/data-services/mongo/entities/cart.model';
+import { Transaction } from 'src/frameworks/data-services/mongo/entities/transaction.model';
 
 export abstract class IDataServices {
   abstract customers: CustomerRepositoryImpl;

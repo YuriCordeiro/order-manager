@@ -1,5 +1,5 @@
-import { Order } from '../model/order.model';
-import { MongoGenericRepository } from '../mongo-generic-repository';
+import { Order } from '../entities/order.model';
+import { MongoGenericRepository } from '../external/mongo-generic-repository';
 
 export class OrderRepositoryImpl extends MongoGenericRepository<Order> {
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Cart } from "../../frameworks/data-services/mongo/model/cart.model";
+import { Cart } from "../../frameworks/data-services/mongo/entities/cart.model";
 
 @Injectable()
 export class CartFactoryService {

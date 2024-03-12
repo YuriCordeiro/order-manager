@@ -1,18 +1,18 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { IGenericRepository } from 'src/core/abstracts/generic-repository.abstract';
-import { Customer, CustomerDocument } from './model/customer.model';
+import { Customer, CustomerDocument } from './entities/customer.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MongoGenericRepository } from './mongo-generic-repository';
-import { CustomerRepositoryImpl } from './repository/customer.repository';
-import { OrderRepositoryImpl } from './repository/order.repository';
-import { Product, ProductDocument } from './model/product.model';
-import { Order, OrderDocument } from './model/order.model';
-import { PaymentMethod, PaymentMethodDocument } from './model/payment.model';
-import { ProductRepositoryImpl } from './repository/product.repository';
-import { Cart, CartDocument } from './model/cart.model';
-import { Transaction, TransactionDocument } from './model/transaction.model';
+import { MongoGenericRepository } from './external/mongo-generic-repository';
+import { CustomerRepositoryImpl } from './gateways/customer.repository';
+import { OrderRepositoryImpl } from './gateways/order.repository';
+import { Product, ProductDocument } from './entities/product.model';
+import { Order, OrderDocument } from './entities/order.model';
+import { PaymentMethod, PaymentMethodDocument } from './entities/payment.model';
+import { ProductRepositoryImpl } from './gateways/product.repository';
+import { Cart, CartDocument } from './entities/cart.model';
+import { Transaction, TransactionDocument } from './entities/transaction.model';
 
 @Injectable()
 export class MongoDataServices

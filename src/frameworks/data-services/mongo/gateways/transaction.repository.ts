@@ -1,6 +1,6 @@
 
-import { Transaction } from '../model/transaction.model';
-import { MongoGenericRepository } from '../mongo-generic-repository';
+import { Transaction } from '../entities/transaction.model';
+import { MongoGenericRepository } from '../external/mongo-generic-repository';
 
 export class TransactionRepositoryImpl extends MongoGenericRepository<Transaction> {
 

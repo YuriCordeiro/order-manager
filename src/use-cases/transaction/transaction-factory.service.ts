@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
 import { TransactionDTO } from "src/dto/transaction.dto";
-import { Transaction } from "src/frameworks/data-services/mongo/model/transaction.model";
+import { Transaction } from "src/frameworks/data-services/mongo/entities/transaction.model";
 
 @Injectable()
 export class TransactionFactoryService {

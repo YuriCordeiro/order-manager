@@ -5,5 +5,5 @@ export class TransactionDTO {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly paymentMethod: string;
+  readonly paymentMethodId: string;
 }

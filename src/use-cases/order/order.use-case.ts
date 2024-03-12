@@ -6,7 +6,7 @@ import {
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { OrderFactoryService } from './order-factory.service';
 import { OrderDTO } from 'src/dto/order.dto';
-import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
+import { Order } from 'src/frameworks/data-services/mongo/entities/order.model';
 import { PutOrderStatusDTO } from 'src/dto/put-order-status.dto';
 import { WebhookDTO } from 'src/dto/webhook-transaction.dto';
 

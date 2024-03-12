@@ -13,7 +13,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { OrderDTO } from 'src/dto/order.dto';
 import { PutOrderStatusDTO } from 'src/dto/put-order-status.dto';
-import { Order } from 'src/frameworks/data-services/mongo/model/order.model';
+import { Order } from 'src/frameworks/data-services/mongo/entities/order.model';
 import { OrderUseCases } from 'src/use-cases/order/order.use-case';
 
 @ApiTags('Orders')

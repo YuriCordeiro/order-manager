@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
-import { Transaction } from "src/frameworks/data-services/mongo/model/transaction.model";
+import { Transaction } from "src/frameworks/data-services/mongo/entities/transaction.model";
 import { TransactionDTO } from "src/dto/transaction.dto";
 import { TransactionFactoryService } from "./transaction-factory.service";
 import { WebhookDTO } from "src/dto/webhook-transaction.dto";

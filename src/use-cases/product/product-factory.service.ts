@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProductDTO } from 'src/dto/product.dto';
-import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
+import { Product } from 'src/frameworks/data-services/mongo/entities/product.model';
 
 @Injectable()
 export class ProductFactoryService {

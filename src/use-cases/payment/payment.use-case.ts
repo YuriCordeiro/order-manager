@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
 import { PaymentFactoryService } from "./payment-factory.service";
-import { PaymentMethod } from "src/frameworks/data-services/mongo/model/payment.model";
+import { PaymentMethod } from "src/frameworks/data-services/mongo/entities/payment.model";
 import { PaymentDTO } from "src/dto/payment.dto";
 
 @Injectable()
