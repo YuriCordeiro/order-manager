@@ -51,9 +51,11 @@ export class OrderUseCases {
   }
 
   async getOrdersByPriority(): Promise<Order[]> {
-    const doneOrders = await this.dataServices.orders.getOrderByStatus('Pronto');
-    const doingOrders = await this.dataServices.orders.getOrderByStatus('Em Preparação');
-    const receivedOrders = await this.dataServices.orders.getOrderByStatus('Recebido');
+    const orders = await this.dataServices.orders.getAll();
+
+    const doneOrders = orders.filter((order) => order.status === 'Pronto');
+    const doingOrders = orders.filter((order) => order.status === 'Em Preparação');
+    const receivedOrders = orders.filter((order) => order.status === 'Recebido');
 
     doneOrders.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
     doingOrders.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
@@ -78,7 +80,8 @@ export class OrderUseCases {
 
   async updateStatus(orderId: string, putOrderStatusDTO: PutOrderStatusDTO): Promise<Order> {
     const foundOrder = await this.getOrderById(orderId);
-    foundOrder.status = putOrderStatusDTO.status;
+    const orderStatusCapitalized = this.captalizeOrderStatus(putOrderStatusDTO.status)
+    foundOrder.status = orderStatusCapitalized;
     return this.dataServices.orders.update(orderId, foundOrder);
   }
 
@@ -91,5 +94,9 @@ export class OrderUseCases {
   deleteOrder(orderId: string) {
     const foundOrder = this.getOrderById(orderId);
     this.dataServices.orders.delete(orderId);
+  }
+
+  private captalizeOrderStatus(status: string): string {
+    return status.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   }
 }

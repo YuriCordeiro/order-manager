@@ -32,7 +32,7 @@ export class OrderController {
   @Get()
   async getAllOrders() {
     this.logger.log(`getAllOrders() - Start`);
-    return await this.orderUseCases.getAllOrders();
+    return await this.orderUseCases.getOrdersByPriority();
   }
 
   @Get('/id/:orderId')
@@ -45,12 +45,6 @@ export class OrderController {
   async getOrderByStatus(@Param('status') status: string): Promise<Order[]> {
     this.logger.log(`getOrderByStatus(string) - Start`);
     return this.orderUseCases.getOrderByStatus(status);
-  }
-
-  @Get('/priority')
-  async getOrdersByPriority(): Promise<Order[]> {
-    this.logger.log(`getOrdersByPriority() - Start`);
-    return this.orderUseCases.getOrdersByPriority();
   }
 
   @Put('/:orderId')
