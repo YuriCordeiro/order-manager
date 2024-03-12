@@ -8,7 +8,7 @@ export class TransactionFactoryService {
     constructor(private dataServices: IDataServices) {}
 
     async createNewTransaction(transactionDTO: TransactionDTO, cartId: string): Promise<Transaction> {
-        const foundPaymentMethod = await this.dataServices.payments.get(transactionDTO.paymentMethod);
+        const foundPaymentMethod = await this.dataServices.payments.get(transactionDTO.paymentMethodId);
         const foundCart = await this.dataServices.carts.get(cartId);
         const transaction = new Transaction();
         transaction.paymentMethod = foundPaymentMethod;
