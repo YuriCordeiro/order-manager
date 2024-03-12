@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PaymentDTO } from "src/dto/payment.dto";
-import { PaymentMethod } from "src/frameworks/data-services/mongo/model/payment.model";
+import { PaymentMethod } from "src/frameworks/data-services/mongo/entities/payment.model";
 
 @Injectable()
 export class PaymentFactoryService {

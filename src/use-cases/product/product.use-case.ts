@@ -6,7 +6,7 @@ import {
 import { IDataServices } from 'src/core/abstracts/data-services.abstract';
 import { ProductFactoryService } from './product-factory.service';
 import { ProductDTO } from 'src/dto/product.dto';
-import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
+import { Product } from 'src/frameworks/data-services/mongo/entities/product.model';
 
 @Injectable()
 export class ProductUseCases {

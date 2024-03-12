@@ -1,5 +1,5 @@
-import { Customer } from "../model/customer.model";
-import { MongoGenericRepository } from "../mongo-generic-repository";
+import { Customer } from "../entities/customer.model";
+import { MongoGenericRepository } from "../external/mongo-generic-repository";
 
 export class CustomerRepositoryImpl extends MongoGenericRepository<Customer> {
 

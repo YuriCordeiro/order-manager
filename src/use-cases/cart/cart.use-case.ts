@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { IDataServices } from "src/core/abstracts/data-services.abstract";
-import { Cart } from "src/frameworks/data-services/mongo/model/cart.model";
+import { Cart } from "src/frameworks/data-services/mongo/entities/cart.model";
 import { CartFactoryService } from "./cart-factory.service";
 import { CartAddProductDTO } from "src/dto/cart-add-product.dto";
-import { Product } from "src/frameworks/data-services/mongo/model/product.model";
+import { Product } from "src/frameworks/data-services/mongo/entities/product.model";
 import { ProductUseCases } from "../product/product.use-case";
 
 @Injectable()
@@ -45,10 +45,10 @@ export class CartUseCases {
         return this.dataServices.carts.update(cartId, foundCart);
     }
 
-    async addPaymentMethodToCart(cartId: string, paymentId: string): Promise<Cart> {
+    async addPaymentTransactionToCart(cartId: string, transactionId: string): Promise<Cart> {
         const foundCart = await this.getCartById(cartId);
-        const foundPaymentMethod = await this.dataServices.payments.get(paymentId);
-        foundCart.paymentMethod = foundPaymentMethod;
+        const foundTransaction = await this.dataServices.transactions.get(transactionId);
+        foundCart.paymentTransaction = foundTransaction;
 
         return this.dataServices.carts.update(cartId, foundCart);
     }

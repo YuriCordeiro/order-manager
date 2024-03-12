@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
+import { Product } from 'src/frameworks/data-services/mongo/entities/product.model';
 import { CustomerDTO } from './customer.dto';
 import { PaymentDTO as PaymentMethodDTO } from './payment.dto';
 
@@ -29,8 +29,4 @@ export class OrderDTO {
   @ApiProperty()
   @IsOptional()
   readonly customer: CustomerDTO;
-
-  @IsOptional()
-  @ApiProperty()
-  readonly paymentMethod: PaymentMethodDTO;
 }

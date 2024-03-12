@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Product, ProductSchema } from './product.model';
-import { PaymentMethod, PaymentMethodSchema } from './payment.model';
 import { Customer, CustomerSchema } from './customer.model';
+import { Transaction, TransactionSchema } from './transaction.model';
 
 export type CartDocument = Cart & Document;
 
@@ -9,8 +9,8 @@ export type CartDocument = Cart & Document;
 export class Cart {
   @Prop({ type: [ProductSchema] })
   products: Product[];
-  @Prop({ type: PaymentMethodSchema })
-  paymentMethod: PaymentMethod;
+  @Prop({ type: TransactionSchema })
+  paymentTransaction: Transaction;
   @Prop()
   total: number;
   @Prop({ type: CustomerSchema })
