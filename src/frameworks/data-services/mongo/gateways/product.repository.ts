@@ -1,5 +1,5 @@
-import { Product } from '../model/product.model';
-import { MongoGenericRepository } from '../mongo-generic-repository';
+import { Product } from '../entities/product.model';
+import { MongoGenericRepository } from '../external/mongo-generic-repository';
 
 export class ProductRepositoryImpl extends MongoGenericRepository<Product> {
   getProductByCategory(category: string) {

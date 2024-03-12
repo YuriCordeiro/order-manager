@@ -22,9 +22,24 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## Application Business Architecture
+![Business Architecture Image](https://iili.io/JW25agj.png "Order Manager Business Architecture")
+
+Basically it shows a customer who can be registered or not, and he can place an order for our fast-food restaurant through the "Order Manager System". 
+
+The order manager system uses a External Payment Gateway (that is mocked in our case) to effectivate the order payment. Last of all, the Order Manager system sends the order to the tracker system, which notifies the customer of their status updates.
+
+
+## Application Infrastructure Requirements
+![Infrastructure Requirements Image](https://iili.io/JW27e6u.png "Order Manager Infrastructure Requirements")
+
+The infraestructure requirements imagem basically shows all the components that must be created for the application to work correctly. Some of the components present in this architecture are: services, persistent volumes, hpas, configmaps, pods, deployments, among others.
+
+
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This application was developed to help a fast-food restaurant which needs to improve the management of the customer orders.
+
 
 ## 1. Topic for Teachers
 <details>
@@ -64,7 +79,7 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
+# production mode/
 $ npm run start:prod
 ```
 

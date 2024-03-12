@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ProductUseCases } from 'src/use-cases/product/product.use-case';
 import { ProductDTO } from 'src/dto/product.dto';
-import { Product } from 'src/frameworks/data-services/mongo/model/product.model';
+import { Product } from 'src/frameworks/data-services/mongo/entities/product.model';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Products')
