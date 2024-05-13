@@ -38,7 +38,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
       with:
         # A comma-delimited list of AWS account IDs that are associated with the ECR Private registries. If you do not specify a registry, the default ECR Private registry is assumed. If 'public' is given as input to 'registry-type', this input is ignored.
-        registries: "975050002971.dkr.ecr.us-east-1.amazonaws.com/order-manager"
+        registries: "975050002971"
         # Which ECR registry type to log into. Options: [private, public]
         registry-type: private
         # Whether to skip explicit logout of the registries during post-job cleanup. Exists for backward compatibility on self-hosted runners. Not recommended. Options: ['true', 'false']      
