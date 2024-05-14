@@ -53,7 +53,7 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to EKS.
-        ID=$(docker build -t $REGISTRY_NAME/$REGISTRY_NAME:$IMAGE_TAG .)
+        ID=$(docker build -t $REGISTRY_NAME/$REGISTRY_NAME:$IMAGE_TAG .) >> $GITHUB_OUTPUT
         docker tag $ID $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
         docker push $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG
         #echo "image=$ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
