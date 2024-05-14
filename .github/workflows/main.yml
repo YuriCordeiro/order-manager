@@ -11,18 +11,16 @@ env:
 
 jobs:
 
-  build:
-
+  authenticate:
     runs-on: ubuntu-latest
-
-    steps:
+    name: Authenticate to Cloud
+    steps:    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
-
     - name: Amazon ECR "Login" Action for GitHub Actions
       # You may pin to the exact commit or the version.
       # uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
@@ -35,8 +33,13 @@ jobs:
         registry-type: private
         # Whether to skip explicit logout of the registries during post-job cleanup. Exists for backward compatibility on self-hosted runners. Not recommended. Options: ['true', 'false']      
 
+  build:
+    runs-on: ubuntu-latest
+    name: Upload Docker Image to ECR
+
+    steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
+    - name: Build and Push the Docker image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REGISTRY_NAME: order-manager
@@ -46,20 +49,36 @@ jobs:
         docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
         #docker push $IMAGE_TAG
         docker push $ECR_REGISTRY/$REGISTRY_NAME:latest
-        #echo "image=$ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-    # - name: Build, tag, and push image to Amazon ECR
-    #   id: build-image
+    # steps:
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: ${{ env.AWS_REGION }}
+
+    # - name: Amazon ECR "Login" Action for GitHub Actions
+    #   # You may pin to the exact commit or the version.
+    #   # uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
+    #   id: login-ecr
+    #   uses: aws-actions/amazon-ecr-login@v2
+    #   with:
+    #     # A comma-delimited list of AWS account IDs that are associated with the ECR Private registries. If you do not specify a registry, the default ECR Private registry is assumed. If 'public' is given as input to 'registry-type', this input is ignored.
+    #     registries: "975050002971"
+    #     # Which ECR registry type to log into. Options: [private, public]
+    #     registry-type: private
+    #     # Whether to skip explicit logout of the registries during post-job cleanup. Exists for backward compatibility on self-hosted runners. Not recommended. Options: ['true', 'false']      
+
+    # - uses: actions/checkout@v4
+    # - name: Build the Docker image
     #   env:
     #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
     #     REGISTRY_NAME: order-manager
     #     IMAGE_TAG: ${{ github.sha }}
     #   run: |
-    #     # Build a docker container and
-    #     # push it to ECR so that it can
-    #     # be deployed to EKS.
-    #     #docker build -t $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG .
-    #     docker tag $IMAGE_TAG $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
-    #     docker push $IMAGE_TAG
-    #     #docker push $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG
+    #     docker build -t $REGISTRY_NAME:latest .
+    #     docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
+    #     #docker push $IMAGE_TAG
+    #     docker push $ECR_REGISTRY/$REGISTRY_NAME:latest
     #     #echo "image=$ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
