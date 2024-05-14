@@ -16,10 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
       with:
@@ -55,5 +51,6 @@ jobs:
         # be deployed to EKS.
         docker build -t $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG .
         docker tag $IMAGE_TAG $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
-        docker push $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG
+        docker push $IMAGE_TAG
+        #docker push $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG
         #echo "image=$ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
