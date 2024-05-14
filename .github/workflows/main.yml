@@ -48,7 +48,7 @@ jobs:
     - name: Build and Push the Docker image
       env:
         #ECR_REGISTRY: ${{ needs.authenticate.outputs.registry }}
-        ECR_REGISTRY: ${{ env.ECR_REGISTRY }}
+        ECR_REGISTRY: ${{ vars.ECR_REGISTRY }}
         REGISTRY_NAME: order-manager
         IMAGE_TAG: ${{ github.sha }}
       run: |
