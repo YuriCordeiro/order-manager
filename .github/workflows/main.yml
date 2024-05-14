@@ -14,6 +14,10 @@ jobs:
   authenticate:
     runs-on: ubuntu-latest
     name: Authenticate to Cloud
+    outputs:
+      ecr_registry: ${{ steps.login-ecr.outputs.registry }}
+
+    
     steps:    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
@@ -36,12 +40,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Upload Docker Image to ECR
+    needs: authenticate
 
     steps:
     - uses: actions/checkout@v4
     - name: Build and Push the Docker image
       env:
-        ECR_REGISTRY: ${{ jobs.authenticate.steps.login-ecr.outputs.registry }}
+        ECR_REGISTRY: ${{ needs.authenticate.outputs.registry }}
         REGISTRY_NAME: order-manager
         IMAGE_TAG: ${{ github.sha }}
       run: |
