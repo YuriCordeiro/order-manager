@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Authenticate to Cloud
     outputs:
-      ecr_registry: ${{ steps.login-ecr.outputs.registry }}
+      registry: ${{ steps.login-ecr.outputs.registry }}
 
     
     steps:    
