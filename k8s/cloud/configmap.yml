@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: order-manager-config
 data:
-  MONGO_CONNECTION_STRING: ${MONGO_CONNECTION_STRING}
+  MONGO_CONNECTION_STRING: MONGO_CONNECTION_STRING
