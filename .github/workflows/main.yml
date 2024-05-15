@@ -35,17 +35,17 @@ jobs:
         registry-type: private
         # Whether to skip explicit logout of the registries during post-job cleanup. Exists for backward compatibility on self-hosted runners. Not recommended. Options: ['true', 'false']      
 
-    # - uses: actions/checkout@v4
-    # - name: Build the Docker image
-    #   env:
-    #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-    #     REGISTRY_NAME: order-manager
-    #     IMAGE_TAG: ${{ github.sha }}
-    #   run: |
-    #     docker build -t $REGISTRY_NAME:$IMAGE_TAG -t $REGISTRY_NAME:latest .
-    #     docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
-    #     docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
-    #     docker push $ECR_REGISTRY/$REGISTRY_NAME --all-tags
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REGISTRY_NAME: order-manager
+        IMAGE_TAG: ${{ github.sha }}
+      # run: |
+      #   docker build -t $REGISTRY_NAME:$IMAGE_TAG -t $REGISTRY_NAME:latest .
+      #   docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
+      #   docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
+      #   docker push $ECR_REGISTRY/$REGISTRY_NAME --all-tags
 
     - name: Update kube config
       env:
@@ -58,9 +58,8 @@ jobs:
         #IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
         ls -ltr
-        #find -name manifests
         #sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/cloud/deployment.yml && \
-        #kubectl apply -f k8s/cloud/
+        kubectl apply -f k8s/cloud/
 
     # - name: EKS kubectl
     #   # You may pin to the exact commit or the version.
