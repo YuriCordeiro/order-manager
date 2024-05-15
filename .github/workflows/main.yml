@@ -64,8 +64,8 @@ jobs:
         #IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
         #sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/cloud/deployment.yml && \
-        sed -i.bak "s|MONGO_CONNECTION_STRING|$DB_URL_PREFIX$://$DB_USER:$DB_PASS@$DB_URL_SUFIX|g" k8s/cloud/configmap.yaml && \
-        cat k8s/cloud/configmap.yaml
+        sed -i.bak "s|MONGO_CONNECTION_STRING|$DB_URL_PREFIX$://$DB_USER:$DB_PASS@$DB_URL_SUFIX|g" k8s/cloud/configmap.yml && \
+        cat k8s/cloud/configmap.yml
         #kubectl apply -f k8s/cloud/
 
     # - name: EKS kubectl
