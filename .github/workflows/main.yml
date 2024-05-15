@@ -57,8 +57,10 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
-        sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/cloud/deployment.yaml && \
-        kubectl apply -f k8s/cloud/
+        ls -ltr
+        find --name deployment.yaml
+        #sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" ./k8s/cloud/deployment.yaml && \
+        #kubectl apply -f ./k8s/cloud/
 
     # - name: EKS kubectl
     #   # You may pin to the exact commit or the version.
