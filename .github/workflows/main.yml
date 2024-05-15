@@ -58,7 +58,7 @@ jobs:
         #IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
         ls -ltr
-        find -name manifests
+        #find -name manifests
         #sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/cloud/deployment.yml && \
         #kubectl apply -f k8s/cloud/
 
