@@ -29,8 +29,6 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Amazon ECR "Login" Action for GitHub Actions
-      # You may pin to the exact commit or the version.
-      # uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
       with:
@@ -46,12 +44,11 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REGISTRY_NAME: order-manager
         IMAGE_TAG: ${{ github.sha }}
-      run: ls -ltr
-      # run: |
-      #   docker build -t $REGISTRY_NAME:$IMAGE_TAG -t $REGISTRY_NAME:latest .
-      #   docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
-      #   docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
-      #   docker push $ECR_REGISTRY/$REGISTRY_NAME --all-tags
+      run: |
+        docker build -t $REGISTRY_NAME:$IMAGE_TAG -t $REGISTRY_NAME:latest .
+        docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:$IMAGE_TAG >> $GITHUB_OUTPUT
+        docker tag $REGISTRY_NAME:latest $ECR_REGISTRY/$REGISTRY_NAME:latest >> $GITHUB_OUTPUT
+        docker push $ECR_REGISTRY/$REGISTRY_NAME --all-tags
 
     - name: Update kube config
       env:
@@ -63,10 +60,11 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         #IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
+        sed -i.bak "s|MONGO_CONNECTION_STRING|$DB_URL_PREFIX://$DB_USER:$DB_PASS@$DB_URL_SUFIX|g" k8s/cloud/configmap.yml && \
+        kubectl apply -f k8s/cloud/
         #sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/cloud/deployment.yml && \
-        sed -i.bak "s|MONGO_CONNECTION_STRING|$DB_URL_PREFIX$://$DB_USER:$DB_PASS@$DB_URL_SUFIX|g" k8s/cloud/configmap.yml && \
-        cat k8s/cloud/configmap.yml
-        #kubectl apply -f k8s/cloud/
+        # cat k8s/cloud/configmap.yml
+        
 
     # - name: EKS kubectl
     #   # You may pin to the exact commit or the version.
